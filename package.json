@@ -10,16 +10,6 @@
     "format": "prettier --write .",
     "prepare": "husky"
   },
-  "lint-staged": {
-    "frontend/src/**/*.{js,jsx}": [
-      "eslint --fix",
-      "prettier --write"
-    ],
-    "backend/src/**/*.js": [
-      "eslint --fix",
-      "prettier --write"
-    ]
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
