@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import { ENV } from './config/env.js';
-import { arcjet } from './utils/arcjet.js';
+import { arcjetInstance } from './utils/arcjet.js';
 import { dbConnection } from './config/db.js';
 
 import authRoutes from './routes/authRoutes.js';
@@ -36,7 +36,7 @@ app.use(morgan('dev'));
 // apply arcjet rate-limit to all routes
 app.use(async (req, res, next) => {
   try {
-    const decision = await arcjet.protect(req, {
+    const decision = await arcjetInstance.protect(req, {
       requested: 1 // specifies that each request consumes 1 token
     });
 

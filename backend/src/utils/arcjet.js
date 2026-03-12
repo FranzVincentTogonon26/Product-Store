@@ -1,9 +1,9 @@
-import arcjet, { tokenBucket, shield, detectBot, slidingWindow } from '@arcjet/node';
+import arcjet, { tokenBucket, shield, detectBot } from '@arcjet/node';
 
 import { ENV } from '../config/env.js';
 
 // init arcjet
-export const aj = arcjet({
+export const arcjetInstance = arcjet({
   key: ENV.ARCJET_KEY,
   characteristics: ['ip.src'],
   rules: [

@@ -17,13 +17,15 @@
     "concurrently": "^9.2.1",
     "eslint": "^8.44.0",
     "husky": "^9.1.7",
-    "lint-staged": "^16.3.3",
-    "prettier": "^3.8.1"
+    "lint-staged": "^16.3.3"
   },
   "lint-staged": {
-    "frontend/**/*.{js,jsx,ts,tsx,css}": [
-      "prettier --write",
-      "eslint --fix"
+    "frontend/src/**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "frontend/src/**/*.css": [
+      "prettier --write"
     ],
     "backend/src/**/*.js": [
       "prettier --write",
