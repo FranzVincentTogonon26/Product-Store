@@ -16,10 +16,23 @@
   "type": "module",
   "devDependencies": {
     "concurrently": "^9.2.1",
-    "eslint": "^10.0.3",
+    "eslint": "^8.44.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.3.3",
     "prettier": "^3.8.1"
+  },
+  "lint-staged": {
+    "frontend/**/*.{js,jsx,ts,tsx,css}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "backend/src/**/*.js": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{json,md}": [
+      "prettier --write"
+    ]
   },
   "workspaces": [
     "backend",
