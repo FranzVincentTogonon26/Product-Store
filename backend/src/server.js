@@ -7,7 +7,6 @@ import { ENV } from './config/env.js';
 import { arcjetInstance } from './utils/arcjet.js';
 import { dbConnection } from './config/db.js';
 
-import authRoutes from './routes/authRoutes.js';
 import productRoutes from './routes/productRoutes.js';
 
 const app = express();
@@ -65,7 +64,6 @@ app.use(async (req, res, next) => {
 });
 
 // API Routes
-app.use('/api/auth', authRoutes);
 app.use('/api/product', productRoutes);
 
 async function startServer() {
