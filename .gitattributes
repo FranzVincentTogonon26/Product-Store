@@ -1,0 +1,10 @@
+# Ensure consistent line endings
+# get rid: warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+* text=auto
+*.json text
+*.js text
+*.jsx text
+*.ts text
+*.tsx text
+*.css text
+*.md text
