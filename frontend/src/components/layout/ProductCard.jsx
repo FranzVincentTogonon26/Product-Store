@@ -8,7 +8,7 @@ ProductCard.propTypes = {
       image: PropTypes.string,
     })
   ).isRequired,
-  onDeleteProducts: PropTypes.func, // optional if not used yet
+  onDeleteProducts: PropTypes.func,
 };
 
 const ProductCard = ({ filteredProducts, onDeleteProducts }) => {
