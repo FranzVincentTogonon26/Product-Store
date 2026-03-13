@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { SignInButton } from '@clerk/clerk-react';
+import { StoreIcon } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
 import ThemeSelector from '../components/ThemeSelector';
 
 function HomePage() {
@@ -16,21 +19,19 @@ function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Navbar */}
-      <nav
-        className={`fixed top-0 right-0 left-0 z-1000 w-full py-4 transition-all duration-300 ${isScrolled ? 'bg-black/30 backdrop-blur-lg' : 'bg-transparent'}`}
-        style={{ transform: 'translate3d(0, 0, 0' }}
-      >
-        <div className="navbar bg-base-100 top-0">
-          <div className="navbar-start">
-            <a className="btn btn-ghost text-xl font-semibold tracking-tight">
-              daisyUI
-            </a>
-          </div>
-          <div className="navbar-end gap-2.5">
-            <ThemeSelector />
-            <SignInButton mode="modal">
-              <a className="btn">Sign In</a>
-            </SignInButton>
+      <nav className="fixed top-0 right-0 left-0 z-1000 w-full">
+        <div className={`${isScrolled ? 'backdrop-blur' : 'bg-transparent'}`}>
+          <div className="navbar top-0 mx-auto flex max-w-7xl items-center justify-between">
+            <Link className="flex items-center gap-3 transition-transform duration-200 hover:scale-105">
+              <StoreIcon className="text-base" strokeWidth={2.5} />
+              <span className="font-bold tracking-wide">GADGET Store</span>
+            </Link>
+            <div className="navbar-end gap-2.5">
+              <ThemeSelector />
+              <SignInButton mode="modal">
+                <a className="btn">Sign In</a>
+              </SignInButton>
+            </div>
           </div>
         </div>
       </nav>

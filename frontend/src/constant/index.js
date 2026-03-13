@@ -1,5 +1,15 @@
 export const THEMES = [
   {
+    name: 'light',
+    label: 'light',
+    colors: ['#422ad5', '#00d3bb', '#09090b'],
+  },
+  {
+    name: 'dark',
+    label: 'dark',
+    colors: ['#605dff', '#00d3bb', '#09090b'],
+  },
+  {
     name: 'pastel',
     label: 'Pastel',
     colors: ['#ffd8d8', '#b7e4c7', '#d8b4fe'],
