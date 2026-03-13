@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 
 import Navbar from '../components/Navbar';
@@ -6,28 +6,49 @@ import ProductCard from '../components/layout/ProductCard';
 import AddProductModal from '../components/layout/AddProductModal';
 import LoaderSkeleton from '../components/LoaderSkeleton';
 
+import useAxiosAuth from '../hooks/useAxiosAuth';
 import productService from '../service/productService';
 
 const DashboardPage = () => {
-  const [product, setProduct] = useState([]);
+  const axiosAuth = useAxiosAuth();
+  const [products, setProducts] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
 
-  // useState(() => {
-  //   const fetchProducts = async () => {
-  //       try {
-  //         setLoading(true);
-  //         const response = await productService.productList();
-  //         console.log(response)
-  //         setProduct(response);
-  //       } catch (error) {
-  //         console.log(`Error: ${error}`)
-  //         toast.error('Failed to fetch products');
-  //       } finally {
-  //         setLoading(false)
-  //       }
-  //   }
-  //   fetchProducts();
-  // }, [product]);
+  useState(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        const response = await productService.productList(axiosAuth);
+        setProducts(response);
+      } catch (error) {
+        console.log(`Error: ${error}`);
+        toast.error('Failed to fetch products');
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchProducts();
+  }, [products]);
+
+  useEffect(() => {
+    filterItems();
+  }, [products, searchQuery]);
+
+  const filterItems = () => {
+    let filtered = products;
+    if (searchQuery) {
+      filtered = filtered.filter((product) =>
+        product.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    setFilteredProducts(filtered);
+  };
+
+  const handleDeleteProducts = (id) => {
+    setProducts((prev) => prev.filter((product) => product.id !== id));
+  };
 
   const renderContent = () => {
     if (loading) {
@@ -70,13 +91,18 @@ const DashboardPage = () => {
                 required
                 placeholder="Search"
                 className="w-full"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </label>
 
-            <AddProductModal product={product} setProduct={setProduct} />
+            <AddProductModal products={products} setProducts={setProducts} />
           </div>
         </div>
-        <ProductCard />
+        <ProductCard
+          filteredProducts={filteredProducts}
+          onDeleteProducts={handleDeleteProducts}
+        />
       </div>
     );
   };
