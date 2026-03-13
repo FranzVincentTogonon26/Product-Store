@@ -1,16 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-ProductCard.propTypes = {
-  filteredProducts: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      image: PropTypes.string,
-    })
-  ).isRequired,
-  onDeleteProducts: PropTypes.func,
-};
-
 const ProductCard = ({ filteredProducts, onDeleteProducts }) => {
   const [deleteId, setDeletedId] = useState(null);
 
@@ -52,6 +42,16 @@ const ProductCard = ({ filteredProducts, onDeleteProducts }) => {
       )}
     </>
   );
+};
+
+ProductCard.propTypes = {
+  filteredProducts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      image: PropTypes.string,
+    })
+  ).isRequired,
+  onDeleteProducts: PropTypes.func,
 };
 
 export default ProductCard;
