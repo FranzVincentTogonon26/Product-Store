@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SignInButton } from '@clerk/clerk-react';
-import { StoreIcon } from 'lucide-react';
+import { BottleWine, StoreIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import ThemeSelector from '../components/ThemeSelector';
@@ -23,8 +23,8 @@ function HomePage() {
         <div className={`${isScrolled ? 'backdrop-blur' : 'bg-transparent'}`}>
           <div className="navbar top-0 mx-auto flex max-w-7xl items-center justify-between">
             <Link className="flex items-center gap-3 transition-transform duration-200 hover:scale-105">
-              <StoreIcon className="text-base" strokeWidth={2.5} />
-              <span className="font-bold tracking-wide">GADGET Store</span>
+              <img src="../public/logo.png" className="w-8" />
+              <span className="font-bold tracking-wide">Boozy</span>
             </Link>
             <div className="navbar-end gap-2.5">
               <ThemeSelector />

@@ -22,8 +22,8 @@ const Navbar = () => {
       <div className={`${isScrolled ? 'backdrop-blur' : 'bg-transparent'}`}>
         <div className="navbar top-0 mx-auto flex max-w-7xl items-center justify-between">
           <Link className="flex items-center gap-3 transition-transform duration-200 hover:scale-105">
-            <StoreIcon className="text-base" strokeWidth={2.5} />
-            <span className="font-bold tracking-wide">GADGETz Store</span>
+            <img src="../public/logo.png" className="w-8" />
+            <span className="font-bold tracking-wide">Boozy</span>
           </Link>
           <div className="flex gap-2.5">
             <ThemeSelector />

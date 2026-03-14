@@ -59,11 +59,11 @@ const DashboardPage = () => {
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto flex max-w-7xl flex-col justify-between px-10 lg:flex-row">
           <div>
-            <div className="text-3xl font-semibold tracking-wide">
-              Product List
+            <div className="text-2xl font-semibold tracking-wide">
+              Trending <span className="font-black">Products</span>
             </div>
             <span className="line-clamp-1 text-sm tracking-normal">
-              Check back later for availability of new models
+              Products with a guarantee of authenticity.
             </span>
           </div>
 
