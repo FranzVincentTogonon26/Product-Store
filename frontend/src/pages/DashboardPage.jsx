@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import ProductCard from '../components/layout/ProductCard';
 import AddProductModal from '../components/layout/AddProductModal';
 import LoaderSkeleton from '../components/LoaderSkeleton';
+import Footer from '../components/Footer';
 
 import useAxiosAuth from '../hooks/useAxiosAuth';
 import productService from '../service/productService';
@@ -115,6 +116,7 @@ const DashboardPage = () => {
     <div className="min-h-screen">
       <Navbar />
       {renderContent()}
+      <Footer />
     </div>
   );
 };
