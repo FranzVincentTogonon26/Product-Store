@@ -22,7 +22,7 @@ const DialogBox = ({ loading, deleteId, modalRef, handleConfirmDelete }) => {
         </p>
         <div className="modal-action">
           <button
-            className="btn btn-soft"
+            className="btn btn-soft btn-secondary"
             disabled={loading}
             onClick={handleDelete}
           >

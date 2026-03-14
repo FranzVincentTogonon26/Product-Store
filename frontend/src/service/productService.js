@@ -13,7 +13,18 @@ const productList = async (axiosAuth) => {
   }
 };
 
-export const productItem = () => {};
+export const productItem = async (axiosAuth, id) => {
+  try {
+    const response = await axiosAuth.get(API_PATHS.PRODUCT.ITEM(id));
+    return response.data.data.product;
+  } catch (error) {
+    throw (
+      error.response?.data || {
+        message: 'An unknown error occurred',
+      }
+    );
+  }
+};
 
 export const productAdd = async (axiosAuth, formData) => {
   try {

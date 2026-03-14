@@ -17,7 +17,7 @@ const DashboardPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     const fetchProducts = async () => {
       try {
         setLoading(true);
@@ -31,7 +31,7 @@ const DashboardPage = () => {
       }
     };
     fetchProducts();
-  }, [products]);
+  }, []);
 
   useEffect(() => {
     filterItems();
@@ -57,63 +57,65 @@ const DashboardPage = () => {
     }
 
     return (
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col justify-between px-10 lg:flex-row">
-          <div>
-            <div className="text-2xl font-semibold tracking-wide">
-              Trending <span className="font-black">Products</span>
+      <main className="flex-grow">
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <div className="mx-auto flex max-w-7xl flex-col justify-between px-10 lg:flex-row">
+            <div>
+              <div className="text-2xl font-semibold tracking-wide">
+                Trending <span className="font-black">Products</span>
+              </div>
+              <span className="line-clamp-1 text-sm tracking-normal">
+                Products with a guarantee of authenticity.
+              </span>
             </div>
-            <span className="line-clamp-1 text-sm tracking-normal">
-              Products with a guarantee of authenticity.
-            </span>
-          </div>
 
-          <div className="mt-10 flex w-full items-center gap-2 lg:mt-0 lg:max-w-xl">
-            <label className="input flex flex-1 items-center gap-2">
-              <svg
-                className="h-[1em] opacity-50"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-              >
-                <g
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2.5"
-                  fill="none"
-                  stroke="currentColor"
+            <div className="mt-10 flex w-full items-center gap-2 lg:mt-0 lg:max-w-xl">
+              <label className="input flex flex-1 items-center gap-2">
+                <svg
+                  className="h-[1em] opacity-50"
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
                 >
-                  <circle cx="11" cy="11" r="8"></circle>
-                  <path d="m21 21-4.3-4.3"></path>
-                </g>
-              </svg>
+                  <g
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                    strokeWidth="2.5"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.3-4.3"></path>
+                  </g>
+                </svg>
 
-              <input
-                type="search"
-                required
-                placeholder="Search"
-                className="w-full"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
+                <input
+                  type="search"
+                  required
+                  placeholder="Search"
+                  className="w-full"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </label>
+
+              <AddProductModal
+                onSuccess={(newProduct) => {
+                  setProducts([...products, newProduct]);
+                }}
               />
-            </label>
-
-            <AddProductModal
-              onSuccess={(newProduct) => {
-                setProducts([...products, newProduct]);
-              }}
-            />
+            </div>
           </div>
+          <ProductCard
+            filteredProducts={filteredProducts}
+            onDeleteProducts={handleDeleteProducts}
+          />
         </div>
-        <ProductCard
-          filteredProducts={filteredProducts}
-          onDeleteProducts={handleDeleteProducts}
-        />
-      </div>
+      </main>
     );
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="flex min-h-screen flex-col">
       <Navbar />
       {renderContent()}
       <Footer />

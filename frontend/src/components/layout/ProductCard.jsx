@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { X } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 import useAxiosAuth from '../../hooks/useAxiosAuth';
 import productService from '../../service/productService';
@@ -43,33 +44,46 @@ const ProductCard = ({ filteredProducts, onDeleteProducts }) => {
                 key={index}
                 className="group card bg-base-100 w-full shadow-sm transition-transform duration-200 hover:scale-105"
               >
-                <figure className="relative">
-                  <img src={product?.image} alt={product?.name} />
-                  <button
-                    onClick={() => handleDeleteRequest(product?.id)}
-                    className="text-neutral pointer-events-none absolute top-2 right-2 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100 hover:text-red-500"
-                  >
-                    <X className="size-6" strokeWidth={2.5} />
-                  </button>
-                </figure>
+                <Link to={`/product/${product?.id}`} className="mb-3 block">
+                  <figure className="relative">
+                    <img src={product?.image} alt={product?.name} />
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault(); // prevent link navigation
+                        e.stopPropagation(); // stop bubbling to Link
+                        handleDeleteRequest(product?.id);
+                      }}
+                      className="text-neutral pointer-events-none absolute top-2 right-2 opacity-0 transition-all duration-200 group-hover:pointer-events-auto group-hover:opacity-100 hover:text-red-500"
+                    >
+                      <X className="size-6" strokeWidth={2.5} />
+                    </button>
+                  </figure>
+                  <div className="card-body">
+                    <h2 className="card-title">
+                      {product?.name}
+                      <div className="badge badge-soft badge-primary">
+                        ₱{product?.price}
+                      </div>
+                    </h2>
 
-                <div className="card-body">
-                  <h2 className="card-title">
-                    {product?.name}
-                    <div className="badge badge-soft badge-primary">
-                      {product?.price}
+                    <p>
+                      A card component has a figure, a body part, and inside
+                      body there are title and actions parts
+                    </p>
+
+                    <div className="card-actions justify-end">
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault(); // prevent link navigation
+                          e.stopPropagation(); // stop bubbling to Link
+                        }}
+                        className="btn btn-neutral"
+                      >
+                        Add to Cart
+                      </button>
                     </div>
-                  </h2>
-
-                  <p>
-                    A card component has a figure, a body part, and inside body
-                    there are title and actions parts
-                  </p>
-
-                  <div className="card-actions justify-end">
-                    <button className="btn btn-neutral">Add to Cart</button>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>

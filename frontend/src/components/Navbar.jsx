@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ShoppingCart, StoreIcon } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import ThemeSelector from '../components/ThemeSelector';
 
 import { UserButton } from '@clerk/clerk-react';
@@ -21,7 +21,10 @@ const Navbar = () => {
     <nav className="top-0 right-0 left-0 z-1000 w-full">
       <div className={`${isScrolled ? 'backdrop-blur' : 'bg-transparent'}`}>
         <div className="navbar top-0 mx-auto flex max-w-7xl items-center justify-between">
-          <Link className="flex items-center gap-3 transition-transform duration-200 hover:scale-105">
+          <Link
+            to="/"
+            className="flex items-center gap-3 transition-transform duration-200 hover:scale-105"
+          >
             <img src="../public/logo.png" className="w-8" />
             <span className="font-bold tracking-wide">Boozy</span>
           </Link>
