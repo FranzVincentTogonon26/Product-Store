@@ -4,9 +4,9 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import { dbConnection } from './config/db.js';
-import { clerkMiddleware } from '@clerk/express';
 import { ENV } from './config/env.js';
-// import { arcjetInstance } from './utils/arcjet.js';
+import { clerkMiddleware } from '@clerk/express';
+import arcjetMiddleware from './middleware/arcjetMiddleware.js';
 
 import productRoutes from './routes/productRoutes.js';
 import clerkRoutes from './routes/clerkRoutes.js';
@@ -18,44 +18,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(clerkMiddleware());
 
-// security middleware
+// Middleware
 app.use(
   helmet({
     contentSecurityPolicy: false
   })
 );
 app.use(morgan('dev')); // log the request
-
-// apply arcjet rate-limit to all routes
-// app.use(async (req, res, next) => {
-//   try {
-//     const decision = await arcjetInstance.protect(req, {
-//       requested: 1 // specifies that each request consumes 1 token
-//     });
-
-//     if (decision.isDenied()) {
-//       if (decision.reason.isRateLimit()) {
-//         res.status(429).json({ error: 'Too Many Requests' });
-//       } else if (decision.reason.isBot()) {
-//         res.status(403).json({ error: 'Bot access denied' });
-//       } else {
-//         res.status(403).json({ error: 'Forbidden' });
-//       }
-//       return;
-//     }
-
-//     // check for spoofed bots
-//     if (decision.results.some((result) => result.reason.isBot() && result.reason.isSpoofed())) {
-//       res.status(403).json({ error: 'Spoofed bot detected' });
-//       return;
-//     }
-
-//     next();
-//   } catch (error) {
-//     console.log('Arcjet error', error);
-//     next(error);
-//   }
-// });
+app.use(arcjetMiddleware); // Rate limit
 
 // API Routes
 app.use('/api/user', clerkRoutes);
