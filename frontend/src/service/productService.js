@@ -15,11 +15,31 @@ const productList = async (axiosAuth) => {
 
 export const productItem = () => {};
 
-export const productAdd = () => {};
+export const productAdd = async (axiosAuth, formData) => {
+  try {
+    const response = await axiosAuth.post(API_PATHS.PRODUCT.ADD, {
+      ...formData,
+    });
+    return response.data.data.product;
+  } catch (error) {
+    throw error.response?.data || { message: 'An unknown error occur' };
+  }
+};
 
 export const productUpdate = () => {};
 
-export const productDelete = () => {};
+export const productDelete = async (axiosAuth, id) => {
+  try {
+    const response = await axiosAuth.delete(API_PATHS.PRODUCT.DELETE(id));
+    return response.data;
+  } catch (error) {
+    throw (
+      error.response?.data || {
+        message: 'An unknown error occurred',
+      }
+    );
+  }
+};
 
 const productService = {
   productList,

@@ -96,7 +96,11 @@ const DashboardPage = () => {
               />
             </label>
 
-            <AddProductModal products={products} setProducts={setProducts} />
+            <AddProductModal
+              onSuccess={(newProduct) => {
+                setProducts([...products, newProduct]);
+              }}
+            />
           </div>
         </div>
         <ProductCard
