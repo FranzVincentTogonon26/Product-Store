@@ -19,11 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(clerkMiddleware());
 
 // Middleware
-app.use(
-  helmet({
-    contentSecurityPolicy: false
-  })
-);
+app.use(helmet({ contentSecurityPolicy: false }));
 app.use(morgan('dev')); // log the request
 app.use(arcjetMiddleware); // Rate limit
 

@@ -57,7 +57,7 @@ const DashboardPage = () => {
     }
 
     return (
-      <main className="flex-grow">
+      <main className="mt-25 flex-grow">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <div className="mx-auto flex max-w-7xl flex-col justify-between px-10 lg:flex-row">
             <div>

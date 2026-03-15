@@ -18,8 +18,8 @@ function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Navbar */}
-      <nav className="top-0 right-0 left-0 z-1000 w-full">
-        <div className={`${isScrolled ? 'backdrop-blur' : 'bg-transparent'}`}>
+      <nav className="fixed top-0 right-0 left-0 z-1000 w-full">
+        <div className={`${isScrolled ? 'backdrop-blur' : 'bg-base-100'}`}>
           <div className="navbar top-0 mx-auto flex max-w-7xl items-center justify-between">
             <Link className="flex items-center gap-3 transition-transform duration-200 hover:scale-105">
               <img src="../public/logo.png" className="w-8" />
@@ -36,6 +36,7 @@ function HomePage() {
       </nav>
       <div className="flex min-h-screen flex-col">
         <div
+          className="relative top-16"
           style={{
             height: '300px',
             backgroundImage:

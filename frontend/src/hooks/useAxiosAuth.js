@@ -1,5 +1,5 @@
-import { useAuth } from '@clerk/clerk-react';
 import { useEffect } from 'react';
+import { useAuth } from '@clerk/clerk-react';
 import axiosInstance from '../utils/axiosInstance';
 
 const useAxiosAuth = () => {

@@ -37,7 +37,7 @@ const ProductCard = ({ filteredProducts, onDeleteProducts }) => {
   return (
     <>
       {filteredProducts.length > 0 ? (
-        <div className="mx-auto max-w-7xl px-4">
+        <div className="mx-auto my-20 max-w-7xl px-4">
           <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {filteredProducts.map((product, index) => (
               <div

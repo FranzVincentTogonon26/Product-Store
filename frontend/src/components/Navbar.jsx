@@ -18,7 +18,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className="top-0 right-0 left-0 z-1000 w-full">
+    <nav className="fixed top-0 right-0 left-0 z-1000 w-full">
       <div className={`${isScrolled ? 'backdrop-blur' : 'bg-transparent'}`}>
         <div className="navbar top-0 mx-auto flex max-w-7xl items-center justify-between">
           <Link

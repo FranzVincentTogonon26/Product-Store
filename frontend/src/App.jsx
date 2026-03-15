@@ -8,15 +8,15 @@ import DashboardPage from './pages/DashboardPage';
 import ProductPage from './pages/ProductPage';
 
 import Spinner from './components/Spinner';
-import { useThemeStore } from './utils/Theme';
 import PageNotFound from './components/PageNotFound';
 
+import { useThemeStore } from './utils/Theme';
 import userService from './service/userService';
 import useAxiosAuth from './hooks/useAxiosAuth';
 
 function App() {
-  const { user } = useUser();
   const axiosAuth = useAxiosAuth();
+  const { user } = useUser();
   const { theme } = useThemeStore();
   const { isSignedIn, isLoaded } = useUser();
 
